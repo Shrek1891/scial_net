@@ -9,6 +9,7 @@ from users.forms import LoginForm
 
 def user_login(request):
     if request.method == 'POST':
+        print("post")
         form = LoginForm(request.POST)
         if form.is_valid():
             data = form.cleaned_data
@@ -21,3 +22,5 @@ def user_login(request):
     else:
         form = LoginForm()
     return render(request, 'users/login.html', {'form': form})
+
+
