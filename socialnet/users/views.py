@@ -1,4 +1,5 @@
 from django.contrib.auth import authenticate, login
+from django.contrib.auth.decorators import login_required
 from django.http import HttpResponse
 from django.shortcuts import render
 
@@ -22,5 +23,10 @@ def user_login(request):
     else:
         form = LoginForm()
     return render(request, 'users/login.html', {'form': form})
+
+
+@login_required
+def index(request):
+    return render(request, 'users/index.html')
 
 
