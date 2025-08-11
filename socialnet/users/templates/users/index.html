@@ -2,4 +2,12 @@
 {% block content %}
     <h1>Home</h1>
     <p>Home Page</p>
+
+{% for post in posts %}
+    <div class="post">
+        <h2>{{ post.title }}</h2>
+        <p>{{ post.caption }}</p>
+        <img src="{{ post.image.url }}" alt="">
+    </div>
+{% endfor %}
 {% endblock content %}
