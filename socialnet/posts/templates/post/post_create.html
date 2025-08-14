@@ -1,10 +1,40 @@
 {% extends 'users/base.html' %}
 
 {% block content %}
-    <h1>Post Create</h1>
-    <form method="post" enctype="multipart/form-data">
-        {% csrf_token %}
-        {{ form.as_p }}
-        <button type="submit">Save</button>
-    </form>
+<div class="flex justify-center items-center h-screen flex-col">
+    <h2 class="text-2xl m-10 font-bold text-gray-700 text-center flex justify-center mb-10">Create A Post</h2>
+    <div class="cp-10 w-2/3">
+
+        <form method="post"
+              class="bg-white shadow-md m-10 border rounded px-8 pt-6 pb-8 mb-4 flex flex-col justify-center items-center space-y-4 space-x-4 w-full"
+              enctype="multipart/form-data">
+            {% csrf_token %}
+            <div class="mb-2">
+                <label class="block text-gray-700 text-sm font-bold mb-2 text-center" for="">Add Title</label>
+                <div class="shadow text-gray-700 appearance-none border rounded py-2 px-3 mr-10">
+                    {{ form.title }}
+                </div>
+
+            </div>
+            <div class="mb-2">
+                <label class="block text-gray-700 text-sm font-bold mb-2 text-center" for="">Upload image</label>
+                <div class="shadow text-gray-700 appearance-none border rounded py-2 px-3 mr-10">
+                    {{ form.image }}
+                </div>
+
+            </div>
+            <div class="mb-2">
+                <label class="block text-gray-700 text-sm font-bold mb-2 text-center" for="">Add Caption</label>
+                <div class="shadow text-gray-700 appearance-none border rounded py-2 px-3 mr-10">
+                    {{ form.caption }}
+                </div>
+
+            </div>
+
+
+            <button type="submit" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded hover:scale-105 cursor-pointer w-full h-10">Submit</button>
+        </form>
+
+    </div>
+</div>
 {% endblock content %}
