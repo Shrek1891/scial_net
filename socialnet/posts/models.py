@@ -13,6 +13,7 @@ class Post(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
     slug = models.SlugField(max_length=50, unique=True,blank=True)
     updated_at = models.DateTimeField(auto_now=True)
+    likes = models.ManyToManyField(settings.AUTH_USER_MODEL, related_name='post_like', blank=True)
 
 
     def __str__(self):
