@@ -1,7 +1,7 @@
 from django.contrib.auth.decorators import login_required
 from django.http import JsonResponse
 from django.shortcuts import render, get_object_or_404, redirect
-from .forms import PostForm
+from .forms import PostForm, CommentForm
 from .models import Post
 import json
 
@@ -21,9 +21,18 @@ def post_create(request):
 
 
 def feed(request):
+    if request.method == 'POST':
+        comment_form = CommentForm(data=request.POST)
+        new_comment = comment_form.save(commit=False)
+        post_id = request.POST.get('post_id')
+        post = get_object_or_404(Post, id=post_id)
+        new_comment.post = post
+        new_comment.save()
+    else:
+        comment_form = CommentForm()
     posts = Post.objects.all().order_by('-created_at')
     login_user = request.user
-    return render(request, 'post/feed.html', {'posts': posts, 'login_user': login_user})
+    return render(request, 'post/feed.html', {'posts': posts, 'login_user': login_user, "comment_form": comment_form})
 
 
 def like_post(request):

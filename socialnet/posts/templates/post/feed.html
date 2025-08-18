@@ -43,6 +43,36 @@
                     </div>
                 </div>
             </div>
+            <div class="px-6 py-5">
+
+                <div class="flex items-center gap-3">
+                    {% for comment in post.comments.all %}
+                    {{comment.posted_by}} : {{comment.comment}}
+                    <br>
+                    {% endfor %}
+                </div>
+                <div class="px-5 py-5">
+                    <form method="POST">
+                        {% csrf_token %}
+                        <div>
+                            <label>Add a comment</label>
+                        </div>
+                        <div>
+                            {{comment_form.comment}}
+                        </div>
+                        <div>
+                            <input type ="hidden" name="post_id" value="{{post.id}}" id="post_id">
+                            <input type="hidden" name="posted_by" id="posted_by" value="{{ login_user }}">
+
+                        </div>
+                        <div>
+                            <button type="submit" class="btn-like hover:scale-110 transition ease-in-out duration-300 cursor-pointer "
+                                    id="comment-{{post.id}}">Comment
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
         </div>
         <!--Card ends here-->
         {% endfor %}

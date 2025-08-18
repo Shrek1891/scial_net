@@ -11,10 +11,9 @@ class Post(models.Model):
     caption = models.TextField()
     title = models.CharField(max_length=50)
     created_at = models.DateTimeField(auto_now_add=True)
-    slug = models.SlugField(max_length=50, unique=True,blank=True)
+    slug = models.SlugField(max_length=50, unique=True, blank=True)
     updated_at = models.DateTimeField(auto_now=True)
     likes = models.ManyToManyField(settings.AUTH_USER_MODEL, related_name='post_like', blank=True)
-
 
     def __str__(self):
         return self.title
@@ -23,3 +22,17 @@ class Post(models.Model):
         if not self.slug:
             self.slug = slugify(self.title)
         super().save(*args, **kwargs)
+
+
+class Comment(models.Model):
+    post = models.ForeignKey(
+        Post, on_delete=models.CASCADE, related_name='comments')
+    comment = models.CharField(max_length=100)
+    created = models.DateTimeField(auto_now=True)
+    posted_by = models.CharField(max_length=100)
+
+    class Meta:
+        ordering = ['created']
+
+    def __str__(self):
+        return self.comment
