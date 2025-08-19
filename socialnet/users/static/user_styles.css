@@ -1,3 +1,29 @@
 input:focus {
     outline: none;
 }
+
+.create-post {
+    height: 100px;
+    width: 100px;
+    border-radius: 50%;
+    background-color: #f0f0f0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: fixed;
+    bottom: 50px;
+    right: 50px;
+    cursor: pointer;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    transition: all 0.2s ease-in-out;
+}
+
+.posts {
+    padding-top: 50px!important;
+}
+
+a:hover {
+    text-decoration: none;
+    transform: scale(1.1);
+    transition: all 0.2s ease-in-out;
+}

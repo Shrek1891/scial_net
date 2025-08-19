@@ -4,18 +4,18 @@
 <head>
     <meta charset="UTF-8">
     <meta name="csrfmiddlewaretoken" content="{{ csrf_token }}">
-    <link rel="stylesheet" href="{% static 'style.css' %}?v=1.01">
+    <link rel="stylesheet" href="{% static 'style.css' %}?v=1.03">
     <link rel="stylesheet" href="{% static 'user_styles.css' %}?v=1.01">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>I</title>
 </head>
 <body>
-<nav class="shadow-lg">
+<nav class="shadow-lg fixed top-0 left-0 w-full bg-white z-999 pt-5">
     <div class="px-4 mx-auto">
         <div class="flex justify-between">
             <div>
-                <a href="" class="flex items-center">
+                <a href="/" class="flex items-center">
                     <img src="{% static 'img/logo.png' %}" alt="logo" class="h-8 w-8 mr-2">
                     <span class="font-bold text-lg text-gray-700">My SocialNet</span>
                 </a>
@@ -24,10 +24,21 @@
                 {% if request.user.is_authenticated %}
                 <a href="{% url 'logout' %}"
                    class="py-2 px-4 text-gray-500 hover:text-gray-700 font-semibold">Logout</a>
+                <a href="{% url 'post_create' %}"
+                   class="py-2 px-4 text-gray-500 hover:text-gray-700 font-semibold create-post">
+                    Create Post
+                </a>
+                <a href="{% url 'index' %}" class="py-2 px-4 text-gray-500 hover:text-gray-700 font-semibold">
+                    My Posts
+                </a>
+                <a href="{% url 'feed' %}" class="py-2 px-4 text-gray-500 hover:text-gray-700 font-semibold">All
+                    Posts</a>
+
                 {% else %}
                 <a href="{% url 'login' %}" class="py-2 px-4 text-gray-500 hover:text-gray-700 font-semibold">Login</a>
-                {% endif %}
                 <a href="{% url 'register' %}" class="py-2 px-4 text-gray-500 hover:text-gray-700 font-semibold">Register</a>
+                {% endif %}
+
             </div>
 
         </div>
@@ -36,6 +47,6 @@
 
 {% block content %}
 {% endblock content %}
-<script src="{% static 'script.js' %}?v=1.03"></script>
+<script src="{% static 'script.js' %}?v=1.04"></script>
 </body>
 </html>

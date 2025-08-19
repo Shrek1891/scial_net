@@ -1,6 +1,5 @@
-console.log('hello')
-
 const likeBtn = document.querySelectorAll('.btn-like')
+const commentBtn = document.querySelectorAll('.btn-comment')
 
 if (likeBtn) {
     likeBtn.forEach((btn) => {
@@ -25,5 +24,14 @@ if (likeBtn) {
         })
     })
 }
+
+if (commentBtn) {
+    commentBtn.forEach((btn) => {
+        btn.addEventListener('click', () => {
+            console.log('clicked')
+            btn.closest('.card').querySelector('.comment-form').toggleAttribute('hidden')
+        })
+    })
+    }
 
 
