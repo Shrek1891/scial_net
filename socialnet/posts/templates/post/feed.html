@@ -2,7 +2,7 @@
 {% load static %}
 {% block content %}
 
-<div class="flex mt-5 p-10 justify-center mb-10 flex-col items-center pt-10 posts">
+<div class="flex mt-5 p-10 justify-center mb-10 flex-col items-center pt-10 posts overflow-y-auto h-[calc(100vh-100px)] ">
     <h2 class="text-3xl font-normal mb-2 text-gray-500 p-10">My Posts</h2>
     <div class="grid mx-60 p-10 grid-cols-1">
         {% for post in posts %}

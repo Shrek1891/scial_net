@@ -6,6 +6,7 @@ from .models import Profile
 from .forms import LoginForm, UserRegistrationForm, UserEditForm, ProfileEditForm
 from posts.models import Post
 
+
 # Create your views here.
 
 def user_login(request):
@@ -17,7 +18,7 @@ def user_login(request):
             user = authenticate(request, username=data['username'], password=data['password'])
             if user is not None:
                 login(request, user)
-                return HttpResponse('user logged in')
+                return render(request, 'users/login_succes.html')
             else:
                 return HttpResponse('user not logged in')
     else:
@@ -45,6 +46,7 @@ def register(request):
     else:
         user_form = UserRegistrationForm()
     return render(request, 'users/register.html', {'user_form': user_form})
+
 
 @login_required
 def edit_profile(request):
